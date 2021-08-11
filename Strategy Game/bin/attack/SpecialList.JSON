@@ -1,0 +1,6 @@
+{
+"Setup":["0 Special Type","1 SCost","2 SPCost","3 EffectList[NDP]"           ,"4 AttackList","5 UnitList","6 Special Data","7 Name"               ]
+"0"    :[2               ,200.0    ,7.0       ,[[7, 4.0, 10.0],[8, 4.0, 7.0]],[]            ,[]          ,[]              ,"Offensive Push"       ]
+"1"    :[0               ,150.0    ,5.0       ,[]                            ,[13]          ,[]          ,[]              ,"Missile Storm"        ]
+"2"    :[3               ,200.0    ,6.0       ,[[9, 5.0, 15.0]]              ,[]            ,[]          ,[]              ,"Threaten"             ]
+}

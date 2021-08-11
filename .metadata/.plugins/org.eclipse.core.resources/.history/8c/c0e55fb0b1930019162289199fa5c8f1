@@ -1,0 +1,26 @@
+package game;
+
+import java.util.ArrayList;
+import unit.Unit;
+
+public class Player {
+	
+	private int turnNumber;
+	private int name;
+	private ArrayList<Unit> unitList;
+	private int allowedUnitList;
+	//Used for default setups. -1 is always custom.
+	private int playerNumber;
+	
+	public Player (int playerNumber)
+	{
+		this.playerNumber = playerNumber;
+	}
+	
+	public Player (ArrayList<Unit> allowedUnitList, ArrayList<Unit> unitList)
+	{
+		this.unitList = unitList;
+		this.allowedUnitList = allowedUnitList;
+	}
+	
+}

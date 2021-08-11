@@ -1,0 +1,300 @@
+package unit;
+import attack.Attack;
+import utilities.JSONDecoder;
+import utilities.Location;
+
+import org.json.simple.*; 
+
+public class Unit {
+	
+	private int unitNumber;
+	private double maxHealthPoint;
+	private double healthPointRecover;
+	private double healthPoint;
+	private double moveRange;
+	private double defence;
+	private double effectResistance;
+	private double maxStamina;
+	private double staminaRecover;
+	private double stamina;
+	private double visionRange;
+	private double resourceCost;
+	private Location location;
+	private Attack[] attackList;
+	private double[][] effects;
+	private int unitID;
+	private int unitType;
+	private double maxAttackRange;
+	private boolean moved;
+	private String name;
+	private int player;
+	private static JSONObject unitInfo;
+	private boolean attacked;
+	
+	public static JSONObject getUnitInfo()
+	{
+		return unitInfo;
+	}
+	
+	public Unit(int unitNumber, int x, int y, int player, int unitID) 
+	{
+		if (unitInfo == null)
+		{
+			JSONDecoder.setupUnitInfo();
+			unitInfo = JSONDecoder.getUnitInfo();
+		}
+		location = new int[] {x,y};
+		this.unitNumber = unitNumber;
+		JSONArray unitValues = (JSONArray) unitInfo.get(((Integer) this.unitNumber).toString());
+		maxHealthPoint = (double) unitValues.get(0);
+		healthPoint = maxHealthPoint;
+		healthPointRecover = (double) unitValues.get(1);
+		moveRange = (double) unitValues.get(2);
+		defence = (double) unitValues.get(3);
+		effectResistance = (double) unitValues.get(4);
+		this.player = player;
+		maxStamina = (double) unitValues.get(5);
+		staminaRecover = (double) unitValues.get(6);
+		stamina = maxStamina;
+		visionRange = (double) unitValues.get(7);
+		resourceCost = (double) unitValues.get(8);
+		name = (String) unitValues.get(11);
+		JSONArray attacks = (JSONArray) unitValues.get(9);
+		attackList = new Attack[attacks.size()];
+		this.unitID = unitID;
+		maxAttackRange = 0;
+		for(int i = 0; i < attacks.size(); i++)
+		{
+			attackList[i] = new Attack(((Long) attacks.get(i)).intValue());
+			if (attackList[i].getAttackRange() > maxAttackRange)
+			{
+				maxAttackRange = attackList[i].getAttackRange();
+			}
+		}
+	}
+	
+	public Unit(int unitNumber, double maxHealthPoint, double healthPointRecover, double healthPoint, double moveRange, double defence, double effectResistance, double maxStamina, double staminaRecover, double stamina, double visionRange, double resourceCost, int[] location, Attack[] attackList, double[][] effects, int unitID, int unitType, double maxAttackRange, int player)
+	{
+		this.unitNumber = unitNumber;
+		this.maxHealthPoint = maxHealthPoint;
+		this.healthPointRecover = healthPointRecover;
+		this.healthPoint = healthPoint;
+		this.moveRange = moveRange;
+		this.defence = defence;
+		this.effectResistance = effectResistance;
+		this.maxStamina = maxStamina;
+		this.staminaRecover = staminaRecover;
+		this.stamina = stamina;
+		this.visionRange = visionRange;
+		this.resourceCost = resourceCost;
+		this.location = location;
+		this.attackList = attackList;
+		this.effects = effects;
+		this.unitID = unitID;
+		this.unitType = unitType;
+		this.maxAttackRange = maxAttackRange;
+		this.moved = false;
+		this.attacked = false;
+		this.player = player;
+	}
+	
+	public int getUnitType()
+	{
+		return unitType;
+	}
+	
+	public int getPlayer()
+	{
+		return player;
+	}
+
+	public int[] getLocation()
+	{
+		return location;
+	}
+	
+	public double getHealthPoint()
+	{
+		return healthPoint;
+	}
+	
+	public double getMaxHealthPoint()
+	{
+		return maxHealthPoint;
+	}
+	
+	public double getHealthPointRecover()
+	{
+		return healthPointRecover;
+	}
+
+	public double getMoveRange()
+	{
+		return moveRange;
+	}
+
+	public double getDefence()
+	{
+		return defence;
+	}
+
+	public double getEffectResisrance()
+	{
+		return effectResistance;
+	}
+
+	public double getMaxStamina()
+	{
+		return maxStamina;
+	}
+	
+	public double getStaminaRecover()
+	{
+		return staminaRecover;
+	}
+	
+	public double getStamina()
+	{
+		return stamina;
+	}
+	
+	public double getVisionRange()
+	{
+		return visionRange;
+	}
+	
+	public double getResourceCost()
+	{
+		return resourceCost;
+	}
+	
+	public int getY()
+	{
+		return location.getY();
+	}
+	
+	public int getX()
+	{
+		return location.getX();
+	}
+	
+	public Attack[] getAttackList()
+	{
+		return attackList;
+	}
+	
+	public int getUnitID()
+	{
+		return unitID;
+	}
+	
+	public int getUnitNumber()
+	{
+		return unitNumber;
+	}
+	
+	public double getMaxAttackRange()
+	{
+		return maxAttackRange;
+	}
+	
+	public double[][] getEffects()
+	{
+		return effects;
+	}
+	
+	public boolean getMoved()
+	{
+		return moved;
+	}
+	
+	public boolean getAttacked()
+	{
+		return attacked;
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public int getCounterAttack(int distance)
+	{
+		int attackID = -1;
+		double maxAttackPower = 0.0;
+		if (distance <= maxAttackRange)
+		{
+			for (int i = 0; i < attackList.length; i++)
+			{
+				if(maxAttackPower < attackList[i].getAttackPower() && distance <= attackList[i].getAttackRange())
+				{
+					maxAttackPower = attackList[i].getAttackPower();
+					attackID = i;
+				}
+			}
+		}
+		return attackID;
+	}
+	
+	public void damage(Attack attack, double attackerHealth)
+	{
+		this.healthPoint -=  ((100.0 - this.defence) / 100.0) * attackerHealth * attack.getAttackPower();
+		if (this.healthPoint < 1.0)
+		{
+			this.healthPoint = 0.0;
+		}
+	}
+	
+	public void attack(Unit target, int attackNumber)
+	{
+		if(!attacked)
+		{
+			attacked = true;
+			Attack attack = attackList[attackNumber];
+			this.stamina -= attack.getStaminaCost();
+			target.damage(attack, this.healthPoint / this.maxHealthPoint);
+			int distance = target.getLocation()[0] - location.getY() + target.getLocation()[1] - location.getX();
+			if (distance < 0)
+			{
+				distance *= -1;
+			}
+			int attackID = target.getCounterAttack(distance);
+			if (attackID != -1)
+			{
+				this.damage(target.getAttackList()[attackID], target.getHealthPoint() / target.getMaxHealthPoint());
+			}
+		}
+	}
+	
+	public void move(int[] location, double moveRangeUsed)
+	{
+		if (!moved)
+		{
+			moved = true;
+			this.location = location.clone();
+			this.stamina -= 5 * (moveRange - moveRangeUsed);
+		}
+	}
+	
+	public void setUnitID(int unitID)
+	{
+		this.unitID = unitID;
+	}
+	
+	public void incrementTurn()
+	{
+		healthPoint += healthPointRecover;
+		stamina += staminaRecover;
+		this.moved = false;
+		this.attacked = false;
+		if (healthPoint > maxHealthPoint)
+		{
+			healthPoint = maxHealthPoint;
+		}
+		if (stamina > maxStamina)
+		{
+			stamina = maxStamina;
+		}
+	}
+	
+}

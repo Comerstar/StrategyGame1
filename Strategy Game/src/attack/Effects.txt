@@ -1,0 +1,80 @@
+Effects List:
+This is the list of effect types. 
+
+0-99: Effects with an effect power. All of them are increases, - results in a decrease
+
+0:   MoveRangeFixedIncrease
+1:   MoveRange%Increase
+2:   DefenceFixedIncrease
+3:   Defence%Increase
+4:   AttackFixedIncrease
+5:   Attack%Increase
+6:   AttackRangeFixedIncrease
+7:   AttackRange%Increase
+8:   HealthRecoverFixedIncrease
+9:   HealthRecover%Increase
+10:  StaminaRecoverFixedIncrease
+11:  StaminaRecover%Increase
+12:  AttackStaminaCostFixedIncrease
+13:  AttackStaminaCost%Increase
+14:  MoveStaminaCostFixedIncrease
+15:  MoveStaminaCost%Increase
+16:  FixedStaminaRecover
+17:  %StaminaRecover
+18:  FixedHealthRecover
+19:  %HealthRecover
+20:  SpecialPointGainFixedIncrease
+21:  SpecialPointGain%Increase
+22:  EffectResistanceFixedIncrease
+23:  EffectResistance%Increase
+24:  VisionRangeFixedIncrease
+25:  VisionRange%Increase
+26:  AttackAreaOfEffectFixedIncrease
+27:  AttackAreaOfEffect%Increase
+28:  AttackNumberOfTargetsFixedIncrease
+29:  AttackNumberOfTargets%Increase
+30:  AttackAoEFixedIncrease
+31:  AttackAOE%Increase
+32:  InnerRangeFixedIncrease
+33:  InnerRange%Increase
+34:  MoveNumberFixedIncrease
+35:  MoveNumber%Increase
+36:  AttackNumberFixedIncrease
+37:  AttackNumber%Increase
+38:  EffectFieldRangeFixedIncrease
+39:  EffectFieldRange%Increase
+40:  EffectFieldPowerFixedIncrease
+41:  EffectFieldPower%Increase
+42:  EffectPowerFixedIncrease
+43:  EffectPower%Increase
+44:  EffectDurationFixedIncrease
+45:  EffectDuration%Increase
+46:  HealFixedIncrease
+47:  Heal%Increase
+48:  CommandEffectPowerFixedIncrease
+49:  CommandEffectPower%Increase
+
+100-149: Effects without an effect power.
+
+100: Stun
+101: SpecialLock
+102: AttackLock
+103: MoveLock
+104: DoubleTurn
+105: DoubleSpecial
+106: DoubleAttack
+107: DoubleMoveLock
+108: Conceal
+109: Provoke
+110: SpecialPointGainInCounterAttack
+
+150-199: Unique, specific effects.
+
+150: BlackFireEffect
+
+200-255: Game Effects.
+
+200: ResourceCostFixedIncrease
+201: ResourceCost%Increase
+202: ResourceGainFixedIncrease
+203: ResourceGain%Increase

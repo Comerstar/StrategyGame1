@@ -1,0 +1,7 @@
+SpecialTypes:
+
+0: AttackType - Like a powerful attack, handled like an attack
+1: FormChange - Changes the form value of the special unit. Can be discrete or continuous
+2: CommandType - Has an effect on all of the units on the same side - Commanders only
+3: ThreatenType? - Has an effect on all enemy units
+4: UnitSpawner - Spawns units

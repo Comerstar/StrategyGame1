@@ -1,0 +1,133 @@
+{
+
+"+0"   : "Fixed Move Range Increase"
+
+"-0"   : "Fixed Move Range Decrease"
+
+"+1"   : "% Move Range Increase"
+
+"-1"   : "% Move Range Decrease"
+
+"+2"   : "Fixed Defence Increase"
+
+"-2"   : "Fixed Defence Decrease"
+
+"+3"   : "% Defence Increase"
+
+"-3"   : "% Defence Decrease"
+
+"+4"   : "Fixed Attack Increase"
+
+"-4"   : "Fixed Attack Decrease"
+
+"+5"   : "% Attack Increase"
+
+"-5"   : "% Attack Decrease"
+
+"+6"   : "Fixed Attack Range Increase"
+
+"-6"   : "Fixed Attack Range Decrease"
+
+"+7"   : "% Attack Range Increase"
+
+"-7"   : "% Attack Range Decrease"
+
+"+8"   : "Fixed Health Recover Increase"
+
+"-8"   : "Fixed Health Recover Decrease"
+
+"+9"   : "% Health Recover Increase"
+
+"-9"   : "% Health Recover Decrease"
+
+"+10"  : "Fixed Stamina Recover Increase"
+
+"-10"  : "Fixed Stamina Recover Decrease"
+
+"+11"  : "% Stamina Recover Increase"
+
+"-11"  : "% Stamina Recover Decrease"
+
+"+12"  : "Fixed Attack Stamina Cost Increase"
+
+"-12"  : "Fixed Attack Stamina Cost Decrease"
+
+"+13"  : "% Attack Stamina Cost Increase"
+
+"-13"  : "% Attack Stamina Cost Decrease"
+
+"+14"  : "Fixed Move Stamina Cost Increase"
+
+"-14"  : "Fixed Move Stamina Cost Decrease"
+
+"+15"  : "% Move Stamina Cost Increase"
+
+"-15"  : "% Move Stamina Cost Decrease"
+
+"+16"  : "Fixed Stamina Recover"
+
+"-16"  : "Fixed Stamina Drain"
+
+"+17"  : "% Stamina Recover"
+
+"-17"  : "% Stamina Drain"
+
+"+18"  : "Fixed Health Recover"
+
+"-18"  : "Fixed Health Drain"
+
+"+19"  : "% Health Recover"
+
+"-19"  : "% Health Drain"
+
+"+20"  : "Fixed Special Point Gain Increase"
+
+"-20"  : "Fixed Special Point Gain Decrease"
+
+"+21"  : "% Special Point Gain Increase"
+
+"-21"  : "% Special Point Gain Decrease"
+
+"+22"  : "Fixed Effect Resistance Increase"
+
+"-22"  : "Fixed Effect Resistance Decrease"
+
+"+23"  : "% Effect Resistance Increase"
+
+"-23"  : "% Effect Resistance Decrease"
+
+"+24"  : "Fixed Vision Range Increase"
+
+"-24"  : "Fixed Vision Range Decrease"
+
+"+25"  : "% Vision Range Increase"
+
+"-25"  : "% Vision Range Decrease"
+
+"100"  : "Stun"
+
+"101"  : "Special Lock"
+
+"102"  : "Attack Lock"
+
+"103"  : "Move Lock"
+
+"150"  : "Black Embers"
+
+"+200" : "Fixed Unit Cost Increase"
+
+"-200" : "Fixed Unit Cost Decrease"
+
+"+201" : "% Unit Cost Increase"
+
+"-201" : "% Unit Cost Decrease"
+
+"+202" : "Fixed Resource Gain Increase"
+
+"-202" : "Fixed Resource Gain Decrease"
+
+"+203" : "% Resource Gain Increase"
+
+"-203" : "% Resource Gain Decrease"
+
+}

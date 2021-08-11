@@ -1,0 +1,43 @@
+package map;
+
+import terrain.Tile;
+
+public class TileMap {
+private Tile[][] map;
+	
+	public TileMap (Tile[][] map)
+	{
+		this.map = map;
+	}
+	
+	public Tile[][] getMap()
+	{
+		return map;
+	}
+	
+	public Tile[] (int y)
+	{
+		return map[y];
+	}
+	
+	public double getMovementCost(int y, int x)
+	{
+		return map[y][x].getMovementCost();
+	}
+	
+	public double[][] movementCostMap()
+	{
+		double[][] movementCostMap = new double[map.length][map[0].length];
+		int i = 0;
+		int j = 0;
+		for (i = 0; i < movementCostMap.length; i++)
+		{
+			for (j = 0; j < movementCostMap[0].length; i++)
+			{
+				movementCostMap[i][j] = map[i][j].getMovementCost();
+			}
+		}
+		return movementCostMap;
+	}
+	
+}

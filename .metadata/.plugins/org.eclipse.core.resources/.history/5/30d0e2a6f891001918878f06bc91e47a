@@ -1,0 +1,85 @@
+package json.decoder;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+public class JSONDecoder {
+
+	private static JSONParser parser;
+	private static FileReader Reader;
+	private static JSONObject unitInfo;
+	private static JSONObject tileInfo;
+	private static JSONObject attackInfo;
+	
+	public static void setupUnitInfo()
+	{
+		try {
+			Reader = new FileReader("src/unit/UnitList.JSON");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		parser  = new JSONParser();
+		try {
+			unitInfo = (JSONObject) parser.parse(Reader);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static JSONObject getUnitInfo()
+	{
+		return unitInfo;
+	}
+	
+	public static void setupTileInfo()
+	{
+		try {
+			Reader = new FileReader("src/terrain/TileList.JSON");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		parser  = new JSONParser();
+		try {
+			tileInfo = (JSONObject) parser.parse(Reader);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static JSONObject getTileInfo()
+	{
+		return tileInfo;
+	}
+	
+	public static void setupAttackInfo()
+	{
+		try {
+			Reader = new FileReader("src/attack/AttackList.JSON");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		parser  = new JSONParser();
+		try {
+			attackInfo = (JSONObject) parser.parse(Reader);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static JSONObject getAttackInfo()
+	{
+		return attackInfo;
+	}
+	
+}

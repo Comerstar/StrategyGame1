@@ -1,0 +1,13 @@
+{
+"Setup":["EffectType","EffectName"         ,"Sign"]
+"0"    :[19          ,"Poison"             ,-1    ]
+"1"    :[16          ,"StaminaDrain"       ,-1    ]
+"2"    :[0           ,"Speed"              ,1     ]
+"3"    :[3           ,"DefenceBoost"       ,1     ]
+"4"    :[18          ,"Heal"               ,1     ]
+"5"    :[16          ,"StaminaRecover"     ,1     ]
+"6"    :[0           ,"Slowness"           ,-1    ]
+"7"    :[5           ,"Offensive Commands" ,1     ]
+"8"    :[13          ,"Offensive Commands" ,1     ]
+"9"    :[4           ,"Fear"               ,-1    ]
+}

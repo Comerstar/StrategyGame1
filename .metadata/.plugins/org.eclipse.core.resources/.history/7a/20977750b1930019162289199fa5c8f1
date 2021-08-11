@@ -1,0 +1,11 @@
+package game;
+
+public class Player {
+	
+	private int turnNumber;
+	private int name;
+	private int playerNumber;
+	
+	public Player()
+	
+}

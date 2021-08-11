@@ -1,0 +1,76 @@
+package map;
+
+import java.util.ArrayList;
+
+import unit.Unit;
+
+public class UnitMap {
+	
+	Unit[][] map;
+	
+	public UnitMap(ArrayList<ArrayList<Unit>> UnitList, int height, int width)
+	{
+		map = new Unit[height][width];
+		int i = 0;
+		int j = 0;
+		ArrayList<Unit> playerUnit;
+		Unit unit;
+		for (i = 0; i < UnitList.size(); i++)
+		{
+			playerUnit = UnitList.get(i);
+			for (j = 0; j < playerUnit.size(); j++)
+			{
+				unit = playerUnit.get(j);
+				map[unit.getY()][unit.getX()] = unit;
+			}
+		}
+	}
+	
+	public void updateMap(ArrayList<ArrayList<Unit>> UnitList)
+	{
+		map = new Unit[map.length][map[0].length];
+		int i = 0;
+		int j = 0;
+		ArrayList<Unit> playerUnit;
+		Unit unit;
+		for (i = 0; i < UnitList.size(); i++)
+		{
+			playerUnit = UnitList.get(i);
+			for (j = 0; j < playerUnit.size(); j++)
+			{
+				unit = playerUnit.get(j);
+				map[unit.getY()][unit.getX()] = unit;
+			}
+		}
+	}
+	
+	public void updateMap(Unit movedUnit, int[] oldLocation)
+	{
+		map[oldLocation[0]][oldLocation[1]] = null;
+		map[movedUnit.getY()][movedUnit.getX()] = movedUnit;
+	}
+	
+	public void updateMap(Unit movedUnit, int[] oldLocation)
+	{
+		map[oldLocation[0]][oldLocation[1]] = null;
+		map[movedUnit.getY()][movedUnit.getX()] = movedUnit;
+	}
+	
+	public Unit[][] getUnitMap()
+	{
+		return map;
+	}
+	
+	public Unit[] getUnitMap(int y)
+	{
+		return map[y];
+	}
+	
+	public Unit getUnitMap(int y,int x)
+	{
+		return map[y][x];
+	}
+	
+}
+	
+

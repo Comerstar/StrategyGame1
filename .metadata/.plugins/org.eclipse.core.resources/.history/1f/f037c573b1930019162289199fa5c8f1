@@ -1,0 +1,20 @@
+package game;
+
+public class Player {
+	
+	private int turnNumber;
+	private int name;
+	//Used for default setups. -1 is always custom.
+	private int playerNumber;
+	
+	public Player (int playerNumber)
+	{
+		this.playerNumber = playerNumber;
+	}
+	
+	public Player ()
+	{
+		
+	}
+	
+}

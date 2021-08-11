@@ -1,0 +1,66 @@
+package attack;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import json.decoder.JSONDecoder;
+
+public class Attack {
+	
+	private int attackNumber;
+	private double attackPower;
+	private int attackType;
+	private double attackRange;
+	private double[][] effects;
+	private double staminaCost;
+	private static JSONObject attackInfo;
+	private String name;
+	
+	public Attack (int attackNumber) 
+	{
+		this.attackNumber= attackNumber;
+		if (attackInfo == null)
+		{
+			JSONDecoder.setupAttackInfo();
+			attackInfo = JSONDecoder.getAttackInfo();
+		}
+		JSONArray attackValues = (JSONArray) attackInfo.get(((Integer) this.attackNumber).toString());
+		if((int) attackValues.get(0) == 0)
+		{
+			staminaCost = (double) attackValues.get(1);
+			attackPower = (double) attackValues.get(2);
+			attackRange = (double) attackValues.get(3);
+			attackType = (int) attackValues.get(4);
+			name = (String) attackValues.get(5);
+		}
+	}
+	
+	public Attack (int attackNumber, double attackPower, int attackType, double attackRange)
+	{
+		this.attackNumber = attackNumber;
+		this.attackPower = attackPower;
+		this.attackType = attackType;
+		this.attackRange = attackRange;
+	}
+
+	public Attack (int attackNumber, double attackPower, int attackType, double attackRange, double[][] effects, double staminaCost)
+	{
+		this.attackNumber = attackNumber;
+		this.attackPower = attackPower;
+		this.attackType = attackType;
+		this.attackRange = attackRange;
+		this.effects = effects;
+		this.staminaCost = staminaCost;
+	}
+	
+	public double getAttackPower()
+	{
+		return attackPower;
+	}
+	
+	public double getStaminaCost()
+	{
+		return staminaCost;
+	}
+	
+}

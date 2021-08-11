@@ -1,0 +1,17 @@
+{
+"Setup"              :"UnitName:unitSpriteName, [unitOStateList], [unitOEndStateList], [unitFStateList], [unitFEndStateList]"
+"Fighter"            :["fighter"              ,["overworldr"]   ,["overworldr"],[],[]]
+"Lumos"              :["lumos"                ,["overworldr"]   ,["overworldr"],[],[]]
+"Effect Maker"       :["effectmaker"          ,["overworldr"]   ,["overworldr"],[],[]]
+"Healer"             :["healer"               ,["overworldr"]   ,["overworldr"],[],[]]
+"Missile Launcher"   :["missilelauncher"      ,["overworldr"]   ,["overworldr"],[],[]]
+"Scatter Artillery"  :["scatterartillery"     ,["overworldr"]   ,["overworldr"],[],[]]
+"Tank"               :["tank"                 ,["overworldr"]   ,["overworldr"],[],[]]
+"Special"            :["special"              ,["overworldr"]   ,["overworldr"],[],[]]
+"Effect Commander"   :["effectcommander"      ,["overworldr"]   ,["overworldr"],[],[]]
+"Offensive Commander":["offensivecommander"   ,["overworldr"]   ,["overworldr"],[],[]]
+"Reactor"            :["reactor"              ,["overworldr"]   ,["overworldr"],[],[]]
+"Barracks"           :["barracks"             ,["overworldr"]   ,["overworldr"],[],[]]
+"Factory"            :["factory"              ,["overworldr"]   ,["overworldr"],[],[]]
+"Reaper"             :["reaper"               ,["overworldr"]   ,["overworldr"],[],[]]
+}

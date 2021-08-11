@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\rando\Documents\Strategy Game\.metadata\.plugins\org.eclipse.jdt.core
+333720906.index
+1468571027.index
+3821419249.index

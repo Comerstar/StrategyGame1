@@ -1,0 +1,10 @@
+package utilities;
+
+public class ArrayHandler {
+	
+	public static Object[] cloneArray(Object[] array)
+	{
+		
+	}
+	
+}

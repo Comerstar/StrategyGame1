@@ -1,0 +1,41 @@
+package map;
+
+import java.util.ArrayList;
+
+import unit.Unit;
+
+public class UnitMap {
+	
+	Unit[][] map;
+	
+	public UnitMap(ArrayList<ArrayList<Unit>> UnitList, int height, int length)
+	{
+		map = new Unit[height][length];
+		int i = 0;
+		int j = 0;
+		ArrayList<Unit> playerUnit;
+		for (i = 0; i < UnitList.size(); i++)
+		{
+			playerUnit = UnitList.get(i);
+			
+		}
+	}
+	
+	public Unit[][] getUnitMap()
+	{
+		return map;
+	}
+	
+	public Unit[] getUnitMap(int y)
+	{
+		return map[y];
+	}
+	
+	public Unit getUnitMap(int y,int x)
+	{
+		return map[y][x];
+	}
+	
+}
+	
+

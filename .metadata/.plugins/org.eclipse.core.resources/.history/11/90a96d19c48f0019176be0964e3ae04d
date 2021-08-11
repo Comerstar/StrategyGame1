@@ -1,0 +1,436 @@
+package animation;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import attack.Attack;
+import game.Game;
+import terrain.Tile;
+import unit.Unit;
+
+public class TextInterface {
+	
+	private Game currentGame;
+	private Scanner scanner;
+	private String[][] selectedUnitMove;
+	private String stage;
+	private int selectedAttack;
+	
+	public TextInterface()
+	{
+		currentGame = new Game();
+		scanner = new Scanner(System.in);
+	}
+	
+	public TextInterface(Game game)
+	{
+		currentGame = game;
+		scanner = new Scanner(System.in);
+	}
+	
+	public void playerAction()
+	{
+		String command = scanner.nextLine();
+		command = command.replaceAll(" ", "");
+		int commandNumber = -1;
+		String[] coordinate = command.split(",");
+		int[] coordinateNumber = new int[2];
+		try
+		{
+			commandNumber = Integer.valueOf(command);
+		}
+		catch (Exception e)
+		{
+			if (coordinate.length == 2)
+			{
+				try
+				{
+					coordinateNumber[1] = Integer.valueOf(coordinate[0]) - 1;
+					coordinateNumber[0] = Integer.valueOf(coordinate[1]) - 1;
+				}
+				catch (Exception f)
+				{
+					System.out.println("Invalid Input");
+				}
+			}
+		}
+		if(commandNumber == 0)
+		{
+			currentGame.advanceTurn();
+		}
+		else if(currentGame.getUnitSelected())
+		{
+			Unit selectedUnit = currentGame.getSelectedUnit();
+			if (stage.equals("move"))
+			{
+				try
+				{
+					if (commandNumber != 1)
+					{
+						if(!selectedUnitMove[coordinateNumber[0]][coordinateNumber[1]].equals(" "))
+						{
+							currentGame.moveSelectedUnit(coordinateNumber);
+							stage = "chooseattack";
+						}
+						else
+						{
+							System.out.println("Invalid Space to Move");
+						}
+					}
+					else
+					{
+						currentGame.deselect();
+					}
+				}
+				catch (Exception e)
+				{
+					
+				}
+			}
+			else if (stage.equals("chooseattack"))
+			{
+				if (0 < commandNumber && commandNumber < selectedUnit.getAttackList().length + 1)
+				{
+					selectedAttack = commandNumber - 1;
+					stage = "attack";
+				}
+				else if (commandNumber == selectedUnit.getAttackList().length + 1)
+				{
+					currentGame.deselect();
+				}
+				else
+				{
+					System.out.println("Invalid Attack");
+				}
+			}
+			else if (stage.equals("attack"))
+			{
+				if(commandNumber != 1)
+				{
+					Unit target = currentGame.getUnitTileMap()[coordinateNumber[0]][coordinateNumber[1]];
+					if(target != null)
+					{
+						int[] targetLocation = target.getLocation();
+						int[] selectedUnitLocation = selectedUnit.getLocation();
+						int distance = targetLocation[0] - selectedUnitLocation[0] + targetLocation[1] - selectedUnitLocation[1];
+						if (distance < 0)
+						{
+							distance *= -1;
+						}
+						if(distance <= selectedUnit.getAttackList()[selectedAttack].getAttackRange() && target.getPlayer() != selectedUnit.getPlayer())
+						{
+							selectedUnit.attack(target, selectedAttack);
+							currentGame.deselect();
+						}
+						else
+						{
+							System.out.println("Invalid Unit To Attack");
+							stage = "chooseattack";
+						}
+					}
+					else
+					{
+						System.out.println("Invalid Unit To Attack");
+						stage = "chooseattack";
+					}
+				}
+				else
+				{
+					currentGame.deselect();
+				}
+			}
+		}
+		else
+		{
+			try
+			{
+				currentGame.selectUnit(commandNumber - 1);
+				Unit selectedUnit = currentGame.getSelectedUnit();
+				if (!selectedUnit.getMoved())
+				{
+					stage = "move";
+				}
+				else if(selectedUnit.getAttacked())
+				{
+					currentGame.deselect();
+					System.out.println("Invalid Unit");
+				}
+			}
+			catch (Exception e)
+			{
+				try
+				{
+					currentGame.selectUnit(currentGame.getUnitTileMap()[coordinateNumber[0]][coordinateNumber[1]].getUnitID());
+					Unit selectedUnit = currentGame.getSelectedUnit();
+					if (!selectedUnit.getMoved())
+					{
+						stage = "move";
+					}
+					else if(selectedUnit.getAttacked())
+					{
+						currentGame.deselect();
+						System.out.println("Invalid Unit");
+					}
+				}
+				catch (Exception f)
+				{
+					System.out.println("Invalid Unit");
+				}
+			}
+		}
+	}
+	
+	public void printCostTileMap()
+	{
+		int i = 0;
+		int j = 0;
+		double[][] tileMapCost = currentGame.getTileMapCost();
+		for (i = 0; i < tileMapCost.length; i++)
+		{
+			for (j = 0; j < tileMapCost[0].length; j++)
+			{
+				System.out.print("|");
+				System.out.print(((Double) tileMapCost[i][j]).intValue());
+			}
+			System.out.println("|");
+		}
+	}
+	
+	public void printUnitMoveMap()
+	{
+		int i = 0;
+		int j = 0;
+		double[][] tileMapCost = currentGame.getSelectedUnitTileMapCost();
+		for (i = 0; i < tileMapCost.length; i++)
+		{
+			for (j = 0; j < tileMapCost[0].length; j++)
+			{
+				System.out.print("|");
+				System.out.print(((Double) tileMapCost[i][j]).intValue());
+			}
+			System.out.println("|");
+		}
+	}
+	
+	public void printPlayerCostTileMap()
+	{
+		int i = 0;
+		int j = 0;
+		double[][] playerTileMapCost = currentGame.getPlayerTileMapCost();
+		for (i = 0; i < playerTileMapCost.length; i++)
+		{
+			for (j = 0; j < playerTileMapCost[0].length; j++)
+			{
+				System.out.print("|");
+				System.out.print(((Double) playerTileMapCost[i][j]).intValue());
+			}
+			System.out.println("|");
+		}
+	}
+	
+	public void renderScreen ()
+	{
+		System.out.print("Player Turn: ");
+		System.out.print(currentGame.getCurrentTurn() + 1);
+		System.out.println();
+		int printSpace = 2;
+		Unit selectedUnit;
+		Tile[][] printMap = currentGame.getTileMap().getMap();
+		String[][] unitMap = new String[printMap.length][printMap[0].length];
+		String[][] unitTypeMap = new String[printMap.length][printMap[0].length];
+		String[][] unitMoveMap = new String[printMap.length][printMap[0].length];
+		int i = 0;
+		int j = 0;
+		int k = 0;
+		Unit printUnit;
+		int[] printLocation;
+		int stringLength = 0;
+		for (i = 0; i < unitMap.length; i++)
+		{
+			for (j = 0; j < unitMap[0].length; j++)
+			{
+				unitMap[i][j] = " ";
+				unitTypeMap[i][j] = " ";
+				unitMoveMap[i][j] = " ";
+			}
+		}
+		ArrayList<ArrayList<Unit>> unitList = currentGame.getUnitList();
+		for (i = 0; i < unitList.size(); i++)
+		{
+			for (j = 0; j < unitList.get(i).size(); j++)
+			{
+				printUnit = unitList.get(i).get(j);
+				printLocation = printUnit.getLocation();
+				unitMap[printLocation[0]][printLocation[1]] = ((Integer) (printUnit.getPlayer() + 1)).toString();
+				unitTypeMap[printLocation[0]][printLocation[1]] = ((Integer) printUnit.getUnitNumber()).toString();
+			}
+		}
+		if(currentGame.getUnitSelected())
+		{
+			Unit[][] unitTileMap = currentGame.getUnitTileMap();
+			selectedUnit = currentGame.getSelectedUnit();
+			double[][] moveValues = currentGame.calculateSelectedMovementRange();
+			for (i = 0; i < moveValues.length; i++)
+			{
+				for (j = 0; j < moveValues[0].length; j++)
+				{
+					if(moveValues[i][j] > 0.0)
+					{
+						if(unitTileMap[i][j] == null)
+						{
+							unitMoveMap[i][j] = ((Integer)((Double) moveValues[i][j]).intValue()).toString();
+						}
+						else if(unitTileMap[i][j].getPlayer() != selectedUnit.getPlayer() || unitTileMap[i][j].getUnitID() == selectedUnit.getUnitID())
+						{
+							unitMoveMap[i][j] = ((Integer)((Double) moveValues[i][j]).intValue()).toString();
+						}
+					}
+				}
+			}
+		}
+		selectedUnitMove = unitMoveMap.clone();
+		for (i = 0; i < printMap.length + 2; i++)
+		{
+			System.out.print("|");
+			for(j = 0; j < printSpace * 2; j++)
+			{
+				System.out.print("-");
+			}
+		}
+		System.out.println("|");
+		System.out.print("|");
+		for(i = 0; i < printSpace * 2; i++)
+		{
+			System.out.print(" ");
+		}
+		for (i = 0; i < printMap[0].length; i++)
+		{
+			System.out.print("|");
+			System.out.print(i + 1);
+			stringLength = ((Integer) i).toString().length();
+			for (j = 0; j < printSpace * 2 - stringLength; j++)
+			{
+				System.out.print(" ");
+			}
+		}
+		System.out.println("|");
+		for (i = 0; i < printMap.length + 2; i++)
+		{
+			System.out.print("|");
+			for(j = 0; j < printSpace * 2; j++)
+			{
+				System.out.print("-");
+			}
+		}
+		System.out.println("|");
+		for (i = 0; i < printMap.length; i++)
+		{
+			System.out.print("|");
+			System.out.print(i + 1);
+			stringLength = ((Integer) i).toString().length();
+			for (j = 0; j < printSpace * 2 - stringLength; j++)
+			{
+				System.out.print(" ");
+			}
+			for (j = 0; j < printMap[0].length; j++)
+			{
+				System.out.print("|");
+				System.out.print(printMap[i][j].getTileNumber());
+				stringLength = ((Integer) printMap[i][j].getTileNumber()).toString().length();
+				for (k = 0; k < printSpace - stringLength; k++)
+				{
+					System.out.print(" ");
+				}
+				System.out.print(unitMap[i][j]);
+				stringLength = (unitMap[i][j].length());
+				for (k = 0; k < printSpace - stringLength; k++)
+				{
+					System.out.print(" ");
+				}
+			}
+			System.out.println("|");
+			System.out.print("|");
+			System.out.print(i + 1);
+			stringLength = ((Integer) i).toString().length();
+			for (j = 0; j < printSpace * 2 - stringLength; j++)
+			{
+				System.out.print(" ");
+			}
+			for (j = 0; j < printMap[0].length; j++)
+			{
+				System.out.print("|");
+				System.out.print(unitTypeMap[i][j]);
+				for (k = 0; k < printSpace - unitTypeMap[i][j].length(); k++)
+				{
+					System.out.print(" ");
+				}
+				System.out.print(unitMoveMap[i][j]);
+				for (k = 0; k < printSpace - unitMoveMap[i][j].length(); k++)
+				{
+					System.out.print(" ");
+				}
+			}
+			System.out.println("|");
+			for (j = 0; j < printMap.length + 2; j++)
+			{
+				System.out.print("|");
+				for(k = 0; k < printSpace * 2; k++)
+				{
+					System.out.print("-");
+				}
+			}
+			System.out.println("|");
+		}
+		if(currentGame.getUnitSelected())
+		{
+			selectedUnit = currentGame.getSelectedUnit();
+			System.out.println(selectedUnit.getName());
+			System.out.print("HP: ");
+			System.out.print(selectedUnit.getHealthPoint());
+			System.out.print("/");
+			System.out.println(selectedUnit.getMaxHealthPoint());
+			System.out.print("Stamina: ");
+			System.out.print(selectedUnit.getStamina());
+			System.out.print("/");
+			System.out.println(selectedUnit.getMaxStamina());
+			System.out.println("0: End Turn");
+			if(stage.equals("chooseattack"))
+			{
+				Attack[] attackList = selectedUnit.getAttackList();
+				System.out.println("Attacks");
+				for (i = 0; i < attackList.length; i++)
+				{
+					System.out.print(i + 1);
+					System.out.print(": ");
+					System.out.println(attackList[i].getName());
+					System.out.print("Damage: ");
+					System.out.println(attackList[i].getAttackPower());
+					System.out.print("Range: ");
+					System.out.println(attackList[i].getAttackRange());
+					System.out.print("Stamina: ");
+					System.out.println(attackList[i].getStaminaCost());
+				}
+				System.out.print(i + 1);
+				System.out.println(": Deselect Unit");
+			}
+			else if (stage.equals("move") || stage.equals("attack"))
+			{
+				System.out.println("1: Deselect Unit");
+			}
+		}
+		else
+		{
+			System.out.println("0: End Turn");
+			System.out.println("Units");
+			ArrayList<Unit> playerUnits = unitList.get(currentGame.getCurrentTurn());
+			for (i = 0; i < playerUnits.size(); i++ )
+			{
+				System.out.print(i + 1);
+				System.out.println(": " + playerUnits.get(i).getName());
+			}
+			System.out.print(i + 1);
+			System.out.println(": Deselect Unit");
+		}
+		
+	}
+	
+}

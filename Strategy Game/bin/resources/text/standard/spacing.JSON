@@ -1,0 +1,7 @@
+{
+"setup": "A JSON File that holds line spacing and spacing between letters. Needs: standard, lines. Everything else: x:[char1char2,spacing]"
+"size":3
+"0":["standard",1]
+"1":["line",1]
+"2":["ij",-2]
+}

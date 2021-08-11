@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.util.Set"/>
+    <fullyQualifiedTypeName name="java.util.stream.Stream"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+    <fullyQualifiedTypeName name="java.util.HashSet"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="java.nio.file.Paths"/>
+    <fullyQualifiedTypeName name="java.nio.file.Files"/>
+    <fullyQualifiedTypeName name="java.nio.file.DirectoryStream"/>
+    <fullyQualifiedTypeName name="java.nio.file.Path"/>
+    <fullyQualifiedTypeName name="org.json.simple.JSONArray"/>
+    <fullyQualifiedTypeName name="terrain.Tile"/>
+    <fullyQualifiedTypeName name="json.decoder.JSONDecoder"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="utilities.ArrayHandler"/>
+    <fullyQualifiedTypeName name="animation.TextInterface"/>
+    <fullyQualifiedTypeName name="game.Player"/>
+    <fullyQualifiedTypeName name="attack.Attack"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="attack.Effect"/>
+    <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
+    <fullyQualifiedTypeName name="javax.print.DocFlavor.READER"/>
+    <fullyQualifiedTypeName name="utilities.JSONDecoder"/>
+    <fullyQualifiedTypeName name="unit.Unit"/>
+    <fullyQualifiedTypeName name="map.UnitMap"/>
+    <fullyQualifiedTypeName name="utilities.Location"/>
+    <fullyQualifiedTypeName name="animation.GamePanel.MouseAdapter"/>
+</qualifiedTypeNameHistroy>

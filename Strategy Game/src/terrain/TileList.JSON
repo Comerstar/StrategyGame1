@@ -1,0 +1,10 @@
+{
+"Setup":["0 MovementCost","1 Type","2 Name"  ,"3 BuildingType","4 BuildingUnit","5 BuildingData" ]
+"0"    :[1.0             ,0       ,"Grass"                                                       ]
+"1"    :[65535.0         ,1       ,"Wall"                                                        ]
+"2"    :[2.0             ,2       ,"Forest"                                                      ]
+"3"    :[3.0             ,3       ,"Mountain"                                                    ]
+"4"    :[65535.0         ,4       ,"Reactor" ,1               ,10              ,[50.0]           ]
+"5"    :[65535.0         ,4       ,"Barracks",4               ,11              ,[0.0,1.0,0.0,0.0]]
+"6"    :[65535.0         ,4       ,"Factory" ,4               ,12              ,[1.0,1.0,0.0,0.0]]
+}

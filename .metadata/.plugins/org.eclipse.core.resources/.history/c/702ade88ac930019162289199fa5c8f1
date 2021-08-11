@@ -1,0 +1,23 @@
+package map;
+
+import unit.Unit;
+
+public class UnitMap {
+	
+	Unit[][] map;
+	
+	public UnitMap()
+	{
+		
+	}
+	
+	public Unit[][] getUnitMap()
+	{
+		return map;
+	}
+	
+	public Unit getUnitMap(x,y)
+	{
+		return map[x][y];
+	}
+}

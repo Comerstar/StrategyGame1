@@ -1,0 +1,14 @@
+{
+"Setup":["0 Target(0 self, 1 enemy)","1 StaminaCost","2 AttackPower(heal = -attackPower)","3 Range","4 Type",["5 TargetEffects[Number Duration Power]"],["6 SelfEffects[Number Duration Power]"],"7 TargetEffectFields", "8 SelfEffectFields","9 Name"         ]
+"0"    :[1                          ,100.0          ,300.0                               ,1.0      ,1       ,[]                                        ,[]                                      ,[]                    ,[]                   ,"TestMelee"      ]
+"1"    :[1                          ,200.0          ,100.0                               ,7.0      ,2       ,[]                                        ,[]                                      ,[]                    ,[]                   ,"TestRange"      ]
+"2"    :[1                          ,150.0          ,200.0                               ,1.0      ,1       ,[[0,2.0,5.0]]                             ,[]                                      ,[]                    ,[]                   ,"TestMeleePoison"]
+"3"    :[1                          ,225.0          ,75.0                                ,5.0      ,2       ,[]                                        ,[[2,3.0,2.0]]                           ,[]                    ,[]                   ,"TestSpeedRange" ]
+}
+{
+"Setup":["0 Type(Support/Attack)","1 StaminaCost","2 AttackPower/SupportPower","3 Range","4 Type",["5 TargetEffects[Number Duration Power]"],["6 SelfEffects[Number Duration Power]"],"7 Name"         ,"8  SupportType","9 TargetEffectFields", "10 SelfEffectFields"]
+"0"    :[0                       ,100.0          ,300.0                       ,1.0      ,1       ,[]                                        ,[]                                      ,"TestMelee"      ,0               ,[]                    ,[]                    ]
+"1"    :[0                       ,200.0          ,100.0                       ,7.0      ,2       ,[]                                        ,[]                                      ,"TestRange"      ,0               ,[]                    ,[]                    ]
+"2"    :[0                       ,150.0          ,200.0                       ,1.0      ,1       ,[[0,2.0,5.0]]                             ,[]                                      ,"TestMeleePoison",0               ,[]                    ,[]                    ]
+"3"    :[0                       ,225.0          ,75.0                        ,5.0      ,2       ,[]                                        ,[[2,3.0,2.0]]                           ,"TestSpeedRange" ,0               ,[]                    ,[]                    ]
+}
